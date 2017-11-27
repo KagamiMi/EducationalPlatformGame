@@ -110,7 +110,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 23
+  controlID: 123
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -131,10 +131,10 @@ MonoBehaviour:
     y: 0
     width: 1027
     height: 930
-  m_MinSize: {x: 202, y: 442}
+  m_MinSize: {x: 202, y: 342}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 24
+  controlID: 124
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -153,14 +153,14 @@ MonoBehaviour:
     y: 0
     width: 1027
     height: 461
-  m_MinSize: {x: 202, y: 221}
+  m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 14}
   - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -179,8 +179,8 @@ MonoBehaviour:
     y: 461
     width: 1027
     height: 469
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 95
+  controlID: 78
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0, y: 0.70710677, z: 0, w: -0.70710677}
     speed: 2
-    m_Value: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
+    m_Value: {x: -0, y: 0.70710677, z: 0, w: -0.70710677}
   m_Size:
     m_Target: 29.076992
     speed: 2
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 1107957385087085674, guid: 47318cf127904314fa9560ccea87a611, type: 2}
     m_ValueSerializationHelper:
-    - {x: 568, y: 187.99998}
+    - {x: 568, y: 231}
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 0}
   m_BreadCrumbs: []
@@ -508,9 +508,9 @@ MonoBehaviour:
     height: 482
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: 7e260000
     m_LastClickedID: 0
-    m_ExpandedIDs: e6fbffff0000000032250000
+    m_ExpandedIDs: e6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -576,13 +576,13 @@ MonoBehaviour:
   m_LastFolders:
   - Assets
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: "C:\\Users\\Kagami\\Desktop\\Sem.7\\Projekt In\u017Cynierski\\Thesis\\Thesis"
+  m_LastProjectPath: "C:\\Users\\Kagami\\Desktop\\Sem.7\\Projekt In\u017Cynierski\\EducationalPlatformGame\\Thesis"
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a4240000
-    m_LastClickedID: 9380
-    m_ExpandedIDs: 00000000a424000000ca9a3bffffff7f
+    m_SelectedIDs: a6240000
+    m_LastClickedID: 9382
+    m_ExpandedIDs: 00000000a624000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -610,7 +610,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a4240000
+    m_ExpandedIDs: 00000000a6240000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
