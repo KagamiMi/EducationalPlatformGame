@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
 
@@ -10,15 +11,26 @@ public class Character : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
     public float gravity = 20.0f;
     private bool lastRight = true;
+    public Text countText;
 
     // Use this for initialization
     void Start () {
         animator = gameObject.GetComponentInChildren<Animator>();
         characterController = GetComponent<CharacterController>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("broccoli"))
+        {
+            other.gameObject.SetActive(false);
+            countText.text = "Points " + "1";
+        }
+    }
+
+
+    // Update is called once per frame
+    void Update () {
           
 		if (Input.GetKey("right"))
         {
