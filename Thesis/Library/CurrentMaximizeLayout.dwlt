@@ -21,8 +21,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 930
-  m_MinSize: {x: 713, y: 471}
-  m_MaxSize: {x: 18008, y: 14021}
+  m_MinSize: {x: 713, y: 492}
+  m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
   controlID: 134
 --- !u!114 &2
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 49
+  controlID: 37
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,9 +183,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.5234375, y: 13.257748, z: 11.178414}
+    m_Target: {x: -6.5, y: 6.3757997, z: 2.431585}
     speed: 2
-    m_Value: {x: -2.5234375, y: 13.257748, z: 11.178414}
+    m_Value: {x: -6.5, y: 6.3757997, z: 2.431585}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -212,9 +212,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0, y: 0.70710677, z: 0, w: -0.70710677}
   m_Size:
-    m_Target: 29.076992
+    m_Target: 23.093018
     speed: 2
-    m_Value: 29.076992
+    m_Value: 23.093018
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -255,7 +255,7 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 1107957385087085674, guid: 47318cf127904314fa9560ccea87a611, type: 2}
     m_ValueSerializationHelper:
-    - {x: 568, y: 187.99998}
+    - {x: 568, y: 108}
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 0}
   m_BreadCrumbs: []
@@ -315,8 +315,8 @@ MonoBehaviour:
     y: 0
     width: 477
     height: 930
-  m_MinSize: {x: 234, y: 471}
-  m_MaxSize: {x: 10004, y: 14021}
+  m_MinSize: {x: 234, y: 492}
+  m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
   controlID: 95
 --- !u!114 &9
@@ -337,8 +337,8 @@ MonoBehaviour:
     y: 0
     width: 477
     height: 503
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -415,8 +415,8 @@ MonoBehaviour:
     y: 503
     width: 477
     height: 427
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 234, y: 271}
+  m_MaxSize: {x: 10004, y: 10021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -465,13 +465,13 @@ MonoBehaviour:
   m_LastFolders:
   - Assets
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: "C:\\Users\\Kagami\\Desktop\\Sem.7\\Projekt In\u017Cynierski\\Thesis\\Thesis"
+  m_LastProjectPath: "C:\\Users\\Kagami\\Desktop\\Sem.7\\Projekt In\u017Cynierski\\EducationalPlatformGame\\Thesis"
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a6240000
-    m_LastClickedID: 9382
-    m_ExpandedIDs: 00000000a624000000ca9a3bffffff7f
+    m_SelectedIDs: a8240000
+    m_LastClickedID: 9384
+    m_ExpandedIDs: 00000000a824000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -499,7 +499,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a6240000
+    m_ExpandedIDs: 00000000a8240000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: 000000001e300000bc2400003c2700002a27000006260000c22600007e2700003a2800008e2500000a250000
+    m_ExpandedInstanceIDs: 000000001e300000bc2400003c2700002a27000006260000c22600007e2700003a2800008e2500000a2500000c250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
