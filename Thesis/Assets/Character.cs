@@ -12,6 +12,7 @@ public class Character : MonoBehaviour {
     public float gravity = 20.0f;
     private bool lastRight = true;
     public Text countText;
+    private int points = 0;
 
     // Use this for initialization
     void Start () {
@@ -24,7 +25,9 @@ public class Character : MonoBehaviour {
         if (other.gameObject.CompareTag("broccoli"))
         {
             other.gameObject.SetActive(false);
-            countText.text = "Points " + "1";
+            points++;
+            countText.text = "Points: " + points;
+            Time.timeScale = 0;
         }
     }
 
