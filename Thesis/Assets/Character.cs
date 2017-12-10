@@ -13,11 +13,14 @@ public class Character : MonoBehaviour {
     private bool lastRight = true;
     public Text countText;
     private int points = 0;
+    private TestPanel testPanel;
+
 
     // Use this for initialization
     void Start () {
         animator = gameObject.GetComponentInChildren<Animator>();
         characterController = GetComponent<CharacterController>();
+        testPanel = TestPanel.Instance();
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +31,8 @@ public class Character : MonoBehaviour {
             points++;
             countText.text = "Points: " + points;
             Time.timeScale = 0;
+            testPanel.Test();
+            //Time.timeScale = 1;
         }
     }
 

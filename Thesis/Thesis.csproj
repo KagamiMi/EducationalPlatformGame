@@ -81,7 +81,9 @@
     <Compile Include="Assets\Broccoli.cs" />
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Character.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
+    <Compile Include="Assets\ModalPanel.cs" />
+    <Compile Include="Assets\PopUp.cs" />
+    <Compile Include="Assets\TestPanel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

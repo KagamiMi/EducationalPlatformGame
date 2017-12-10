@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class PopUp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +13,9 @@ public class NewBehaviourScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnEnable()
+    {
+        transform.SetAsLastSibling();
+    }
 }
