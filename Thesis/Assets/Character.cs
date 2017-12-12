@@ -14,6 +14,7 @@ public class Character : MonoBehaviour {
     public Text countText;
     private int points = 0;
     private TestPanel testPanel;
+    //private Renderer renderer;
 
 
     // Use this for initialization
@@ -21,7 +22,21 @@ public class Character : MonoBehaviour {
         animator = gameObject.GetComponentInChildren<Animator>();
         characterController = GetComponent<CharacterController>();
         testPanel = TestPanel.Instance();
+        //renderer = GetComponent<Renderer>();
 	}
+
+    //private IEnumerator Blink(float blinkTime)
+    //{
+    //    float end = Time.time+blinkTime;
+    //    while (Time.time < end)
+    //    {
+    //        renderer.enabled = false;
+    //        yield return new WaitForSeconds(0.5f);
+    //        renderer.enabled = true;
+    //        yield return new WaitForSeconds(0.5f);
+    //    }
+    //    this.gameObject.SetActive(true);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +48,15 @@ public class Character : MonoBehaviour {
             Time.timeScale = 0;
             testPanel.Test();
             //Time.timeScale = 1;
+        }
+        else if (other.gameObject.CompareTag("cookie"))
+        {
+            points--;
+            countText.text = "Points: " + points;
+            //this.gameObject.SetActive(false);
+            //StartCoroutine(Blink(5));
+            //this.gameObject.SetActive(true);
+            
         }
     }
 

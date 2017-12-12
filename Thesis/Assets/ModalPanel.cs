@@ -42,7 +42,7 @@ public class ModalPanel : MonoBehaviour {
     void ClosePanel()
     {
         panel.SetActive(false);
-        Time.timeScale = 1;
+        
     }
 
 }

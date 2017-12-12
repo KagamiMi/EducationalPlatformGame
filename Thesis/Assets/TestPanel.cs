@@ -12,6 +12,8 @@ public class TestPanel : MonoBehaviour {
     private UnityAction okAction;
     private XmlDocument xmlDocument;
     private List<string> advices = new List<string>();
+    private List<int> indexes = new List<int>();
+    private int adviceIndex = 0;
 
     private static TestPanel testPanel;
 
@@ -25,7 +27,18 @@ public class TestPanel : MonoBehaviour {
             for (int i = 0; i < list.ChildNodes.Count; i++)
             {
                 advices.Add(list.ChildNodes[i].InnerText);
+                indexes.Add(i);
             }
+        }
+
+        //DurstenfeldShuffle
+        System.Random random = new System.Random();
+        for (int i = 0;i<(indexes.Count-1);i++)
+        {
+            int j = random.Next() % ((indexes.Count-1)-i) + i;
+            int temp = indexes[i];
+            indexes[i] = indexes[j];
+            indexes[j] = temp;
         }
     }
 
@@ -50,12 +63,14 @@ public class TestPanel : MonoBehaviour {
 
     public void Test()
     {
-        modalPanel.OkChoice(advices[0],okAction);
+        modalPanel.OkChoice(advices[indexes[adviceIndex]],okAction);
+        adviceIndex++;
     }
 
     void TestOkFunction()
     {
-        testText.text = "Naciśnięto OK";
-        
+        Time.timeScale = 1;
+        // testText.text = "Naciśnięto OK";
+
     }
 }
