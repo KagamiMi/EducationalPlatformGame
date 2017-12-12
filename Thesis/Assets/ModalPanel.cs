@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class ModalPanel : MonoBehaviour {
 
     public Text advice;
-    public Image icon;
+    //public Image icon;
     public Button okButton;
     public GameObject panel;
 
@@ -35,7 +35,7 @@ public class ModalPanel : MonoBehaviour {
         okButton.onClick.AddListener(ClosePanel);
 
         this.advice.text = advice;
-        this.icon.gameObject.SetActive(false);
+        //this.icon.gameObject.SetActive(false);
         this.okButton.gameObject.SetActive(true);
     }
 
