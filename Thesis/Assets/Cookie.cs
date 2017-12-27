@@ -12,7 +12,7 @@ public class Cookie : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        transform.position += new Vector3(0,0,-0.5f)*Time.timeScale;
+        transform.position += new Vector3(0,0,-0.25f)*Time.timeScale;
         transform.Rotate(new Vector3(0, -5, 0) * Time.timeScale);
     }
 }
