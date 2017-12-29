@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/highscoresScene.unity
+- path: Assets/Scenes/chooseCharacterScene.unity
   isLoaded: 1
   isActive: 1
