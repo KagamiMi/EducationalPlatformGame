@@ -8,15 +8,19 @@ public class Character : MonoBehaviour {
 
     private Animator animator;
     private CharacterController characterController;
-    public float speed = 6.0f;
+    public float speed;
     private Vector3 moveDirection = Vector3.zero;
-    public float gravity = 20.0f;
+    public float gravity;
     private bool lastRight = true;
     public Text countText;
     private int points = 0;
     private TestPanel testPanel;
     public Image[] hearts = new Image[3];
     private int lives;
+    public Text messageText;
+    private float normalSpeed;
+    public float speedMultiply = 1.5f;
+    private bool renewal = false;
     //private Renderer renderer;
 
 
@@ -51,6 +55,63 @@ public class Character : MonoBehaviour {
     //    this.gameObject.SetActive(true);
     //}
 
+    private IEnumerator SpeedUp()
+    {
+        //normalSpeed = speed;
+        messageText.text = "Zwiększenie szybkości!";
+        messageText.gameObject.SetActive(true);
+        speed = speedMultiply * speed;
+        yield return new WaitForSeconds(5);
+        //speed = normalSpeed;
+        speed = speed / speedMultiply;
+        messageText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ExtraLife()
+    {
+        
+            hearts[lives].enabled = true;
+            lives++;
+            messageText.text = "Dodatkowe życie!";
+            messageText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2);
+            messageText.gameObject.SetActive(false);
+        
+    }
+
+    private IEnumerator Renewal()
+    {
+        renewal = true;
+
+        //gameObject.SetActive(false);
+        // gameObject.active = false;
+       
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            yield return new WaitForSeconds(0.1f);
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            yield return new WaitForSeconds(0.1f);
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+        renewal = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("broccoli"))
@@ -62,6 +123,28 @@ public class Character : MonoBehaviour {
             testPanel.Test();
             //Time.timeScale = 1;
         }
+        else if (other.gameObject.CompareTag("speedBroccoli"))
+        {
+            other.gameObject.SetActive(false);
+            points++;
+            countText.text = "Punkty: " + points;
+            StartCoroutine(SpeedUp());
+        }
+        else if (other.gameObject.CompareTag("lifeBroccoli"))
+        {
+            other.gameObject.SetActive(false);
+            points++;
+            countText.text = "Punkty: " + points;
+            if (lives < 3)
+            {
+                StartCoroutine(ExtraLife());
+            }
+            else
+            {
+                Time.timeScale = 0;
+                testPanel.Test();
+            }
+        }
         else if (other.gameObject.CompareTag("endBroccoli"))
         {
             PlayerPrefs.SetInt("score", points);
@@ -69,16 +152,20 @@ public class Character : MonoBehaviour {
         }
         else if (other.gameObject.CompareTag("cookie"))
         {
-            if (lives > 1)
+            if (!renewal)
             {
-                hearts[lives - 1].enabled = false;
-                lives--;
-            }
-            else
-            {
-                hearts[0].enabled = false;
-                PlayerPrefs.SetInt("score", points);
-                SceneManager.LoadScene("endScene");
+                if (lives > 1)
+                {
+                    hearts[lives - 1].enabled = false;
+                    lives--;
+                    StartCoroutine(Renewal());
+                }
+                else
+                {
+                    hearts[0].enabled = false;
+                    PlayerPrefs.SetInt("score", points);
+                    SceneManager.LoadScene("endScene");
+                }
             }
             //points--;
             //countText.text = "Punkty: " + points;

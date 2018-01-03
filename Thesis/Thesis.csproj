@@ -83,8 +83,10 @@
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\CharacterChoice.cs" />
+    <Compile Include="Assets\Scripts\CharacterRigidbody.cs" />
     <Compile Include="Assets\Scripts\Cookie.cs" />
     <Compile Include="Assets\Scripts\EndEnter.cs" />
+    <Compile Include="Assets\Scripts\ExtraPowerBroccoli.cs" />
     <Compile Include="Assets\Scripts\HighscoresData.cs" />
     <Compile Include="Assets\Scripts\MenuReturn.cs" />
     <Compile Include="Assets\Scripts\ModalPanel.cs" />
