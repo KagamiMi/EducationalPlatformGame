@@ -1,24 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Cookie : MonoBehaviour {
 
     public float leftZ = 0;
     public float rightZ = 0;
     private bool leftDirection = true;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private float rotation = 5;
+    private float position = 0.25f;
 	
-	// Update is called once per frame
 	void Update () {
         
         if (transform.position.z > (leftZ+1) && leftDirection)
         {
-            transform.position += new Vector3(0, 0, -0.25f) * Time.timeScale;
-            transform.Rotate(new Vector3(0, -5, 0) * Time.timeScale);
+            transform.position += new Vector3(0, 0, -position) * Time.timeScale;
+            transform.Rotate(new Vector3(0, -rotation, 0) * Time.timeScale);
         }
         else
         {
@@ -27,8 +22,8 @@ public class Cookie : MonoBehaviour {
 
         if (transform.position.z<(rightZ-1) && !leftDirection)
         {
-            transform.position += new Vector3(0, 0, 0.25f) * Time.timeScale;
-            transform.Rotate(new Vector3(0, 5, 0) * Time.timeScale);
+            transform.position += new Vector3(0, 0, position) * Time.timeScale;
+            transform.Rotate(new Vector3(0, rotation, 0) * Time.timeScale);
         }
         else
         {

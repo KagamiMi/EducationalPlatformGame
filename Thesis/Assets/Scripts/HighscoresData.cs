@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
@@ -12,20 +11,10 @@ public class HighscoresData : MonoBehaviour {
 
     public Text[] names = new Text[10];
     public Text[] values = new Text[10];
-    //private Score[] scores = new Score[10];
     private List<Score> scores = new List<Score>();
 
-	// Use this for initialization
-	void Start () {
-        //scores.Add(new Score("Kasia", 8));
-        //scores.Add(new Score("Ania", 15));
-        //scores.Add(new Score("Wojtek",12));
-        
-     
-        //this.Serialize();
-        //załadowanie tablicy, potem posortowanie
-        this.Deserialize();
-        //scores.Sort(new ScoreComparer());
+	private void Start () {
+        Deserialize();
         if (PlayerPrefs.HasKey("score") && PlayerPrefs.HasKey("name"))
         {
             NewScore();
@@ -34,7 +23,7 @@ public class HighscoresData : MonoBehaviour {
         ShowScores();
     }
 	
-    void ShowScores()
+    private void ShowScores ()
     {
         for (int i = 0; i < scores.Count; i++)
         {
@@ -43,7 +32,7 @@ public class HighscoresData : MonoBehaviour {
         }
     }
 
-    void NewScore()
+    private void NewScore ()
     {
         Boolean inserted = false;
         Score newScore = new Score(PlayerPrefs.GetString("name"), PlayerPrefs.GetInt("score"));
@@ -74,29 +63,18 @@ public class HighscoresData : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void Deserialize()
+    private void Deserialize ()
     {
-        //scores.Clear();
         if (File.Exists("Data.dat")) {
             FileStream fileStream = new FileStream("Data.dat", FileMode.Open);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            //sprawdzic czy jest co czytac w ogole
             try
             {
                 scores = (List<Score>)binaryFormatter.Deserialize(fileStream);
-                //for (int i = 0; i < 2; i++)
-                //{
-                //    scores[i] = ((Score)binaryFormatter.Deserialize(fileStream));
-                //}
             }
-            catch (SerializationException e)
+            catch (SerializationException)
             {
-                //log
+                Debug.Log("Error while deserializing highscores data.");
             }
             finally
             {
@@ -105,30 +83,21 @@ public class HighscoresData : MonoBehaviour {
         }
     }
 
-    void Serialize()
+    private void Serialize()
     {
         FileStream fileStream = new FileStream("Data.dat", FileMode.Create);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         try
         {
             binaryFormatter.Serialize(fileStream,scores);
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    binaryFormatter.Serialize(fileStream,scores[i]);
-            //}
         }
-        catch(SerializationException e)
+        catch(SerializationException)
         {
-            //log
+            Debug.Log("Error while serializing highscores data.");
         }
         finally
         {
             fileStream.Close();
         }
-    }
-
-    void NewScore(Score newScore)
-    {
-
     }
 }

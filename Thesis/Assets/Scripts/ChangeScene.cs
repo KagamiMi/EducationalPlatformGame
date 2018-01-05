@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +7,9 @@ public class ChangeScene : MonoBehaviour {
     public Button startButton;
     public Button highscoresButton;
     public Button exitButton;
-    // Use this for initialization
-    void Start () {
+
+    private void Start ()
+    {
         startButton.onClick.RemoveAllListeners();
         startButton.onClick.AddListener(ToCharacterChoice);
         highscoresButton.onClick.RemoveAllListeners();
@@ -19,17 +18,17 @@ public class ChangeScene : MonoBehaviour {
         exitButton.onClick.AddListener(Exit);
 	}
 	
-    private void ToHighscores()
+    private void ToHighscores ()
     {
         SceneManager.LoadScene("highscoresScene");
     }
 
-    private void ToCharacterChoice()
+    private void ToCharacterChoice ()
     {
         SceneManager.LoadScene("chooseCharacterScene");
     }
 
-    private void Exit()
+    private void Exit ()
     {
         Application.Quit();
     }

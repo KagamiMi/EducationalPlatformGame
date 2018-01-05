@@ -78,22 +78,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AdvicePanel.cs" />
     <Compile Include="Assets\Scripts\Broccoli.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\CharacterChoice.cs" />
-    <Compile Include="Assets\Scripts\CharacterRigidbody.cs" />
     <Compile Include="Assets\Scripts\Cookie.cs" />
     <Compile Include="Assets\Scripts\EndEnter.cs" />
     <Compile Include="Assets\Scripts\ExtraPowerBroccoli.cs" />
     <Compile Include="Assets\Scripts\HighscoresData.cs" />
     <Compile Include="Assets\Scripts\MenuReturn.cs" />
-    <Compile Include="Assets\Scripts\ModalPanel.cs" />
-    <Compile Include="Assets\Scripts\PopUp.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
-    <Compile Include="Assets\Scripts\ScoreComparer.cs" />
-    <Compile Include="Assets\Scripts\TestPanel.cs" />
     <Compile Include="Assets\Scripts\ToScoreBoard.cs" />
     <Compile Include="Assets\Scripts\XmlData.cs" />
   </ItemGroup>

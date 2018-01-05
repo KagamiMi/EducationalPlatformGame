@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
@@ -8,8 +6,9 @@ public class CameraController : MonoBehaviour {
     public GameObject boyCharacter;
     private GameObject character;
     private Vector3 distance;
-	// Use this for initialization
-	void Start () {
+	
+	private void Start ()
+    {
         if (PlayerPrefs.GetString("character") == girlCharacter.tag)
         {
             character = girlCharacter;
@@ -21,8 +20,9 @@ public class CameraController : MonoBehaviour {
         distance = transform.position - character.transform.position;
 	}
 	
-	// Update is called once per frame
-	void LateUpdate () {
+	
+	private void LateUpdate ()
+    {
         transform.position = character.transform.position + distance;
 	}
 }

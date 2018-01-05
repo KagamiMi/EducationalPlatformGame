@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 public class ExtraPowerBroccoli : MonoBehaviour {
 
-    GameObject[] broccoli;
     public int speedUpCount = 5;
     public int extraLifeCount = 3;
     private int index;
-    System.Random random = new System.Random();
-    // Use this for initialization
-    void Start () {
+    private GameObject[] broccoli;
+    private System.Random random = new System.Random();
+
+    private void Start () {
         broccoli = GameObject.FindGameObjectsWithTag("broccoli");
         SpeedUpBroccoli();
         ExtraLifeBroccoli();
 	}
 
-    void ExtraLifeBroccoli()
+    private void ExtraLifeBroccoli ()
     {
         int max = extraLifeCount < (broccoli.Length - speedUpCount) ? extraLifeCount : broccoli.Length - speedUpCount;
         for (int i = 0; i < max; i++)
@@ -30,11 +29,9 @@ public class ExtraPowerBroccoli : MonoBehaviour {
         }
     }
 
-    void SpeedUpBroccoli()
+    private void SpeedUpBroccoli ()
     {
-        
         int max = speedUpCount < broccoli.Length ? speedUpCount : broccoli.Length;
-        
         for (int i = 0; i < max; i++)
         {
             index = random.Next(0, broccoli.Length);
@@ -46,8 +43,4 @@ public class ExtraPowerBroccoli : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
