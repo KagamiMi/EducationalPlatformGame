@@ -3,27 +3,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour, IMovementController, IAnimationController
+{
 
     public float speed = 15f;
-    public float gravity = 15f;
+
     public float speedMultiply = 1.5f;
     public float jumpMultiply = 2f;
     private int points = 0;
     private int lives = 3;
     private bool renewal = false;
-    private bool lastRight = true;
     private Vector3 moveDirection = Vector3.zero;
-    
+    private bool lastRight = true;
+
     private Animator animator;
     private CharacterController characterController;
+
+    public CharacterActionController actionController;
 
     public Text countText;
     public Text messageText;
     public Image[] hearts = new Image[3];
     private AdvicePanel advicePanel;
-   
-    private void Start ()
+
+    private void OnEnable()
+    {
+        actionController.SetMovementController(this);
+        actionController.SetAnimationController(this);
+    }
+
+    private void Start()
     {
         if (PlayerPrefs.GetString("character") != this.gameObject.tag)
         {
@@ -35,9 +44,9 @@ public class Character : MonoBehaviour {
             characterController = GetComponent<CharacterController>();
             advicePanel = GameObject.Find("Managers").GetComponent<AdvicePanel>();
         }
-	}
-    
-    private IEnumerator SpeedUp ()
+    }
+
+    private IEnumerator SpeedUp()
     {
         messageText.text = "Zwiększenie szybkości!";
         messageText.gameObject.SetActive(true);
@@ -47,8 +56,8 @@ public class Character : MonoBehaviour {
         messageText.gameObject.SetActive(false);
     }
 
-    private IEnumerator ExtraLife ()
-    {    
+    private IEnumerator ExtraLife()
+    {
         hearts[lives].enabled = true;
         lives++;
         messageText.text = "Dodatkowe życie!";
@@ -57,7 +66,7 @@ public class Character : MonoBehaviour {
         messageText.gameObject.SetActive(false);
     }
 
-    private IEnumerator Renewal ()
+    private IEnumerator Renewal()
     {
         renewal = true;
 
@@ -87,7 +96,7 @@ public class Character : MonoBehaviour {
         renewal = false;
     }
 
-    private void OnBroccoliCollide (Collider collider)
+    private void OnBroccoliCollide(Collider collider)
     {
         collider.gameObject.SetActive(false);
         points++;
@@ -95,7 +104,7 @@ public class Character : MonoBehaviour {
         advicePanel.ActivatePanel();
     }
 
-    private void OnSpeedBroccoliCollide (Collider collider)
+    private void OnSpeedBroccoliCollide(Collider collider)
     {
         collider.gameObject.SetActive(false);
         points++;
@@ -103,7 +112,7 @@ public class Character : MonoBehaviour {
         StartCoroutine(SpeedUp());
     }
 
-    private void OnLifeBroccoliCollide (Collider collider)
+    private void OnLifeBroccoliCollide(Collider collider)
     {
         collider.gameObject.SetActive(false);
         points++;
@@ -119,13 +128,13 @@ public class Character : MonoBehaviour {
         }
     }
 
-    private void OnEndBroccoliCollide (Collider collider)
+    private void OnEndBroccoliCollide(Collider collider)
     {
         PlayerPrefs.SetInt("score", points);
         SceneManager.LoadScene("endScene");
-    } 
+    }
 
-    private void OnCookieCollide (Collider collider)
+    private void OnCookieCollide(Collider collider)
     {
         if (!renewal)
         {
@@ -144,7 +153,7 @@ public class Character : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter (Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         switch (collider.gameObject.tag)
         {
@@ -166,7 +175,9 @@ public class Character : MonoBehaviour {
         }
     }
 
-    private void RunningAnimation ()
+    #region IAnimationController implementation
+
+    public void RunningAnimation()
     {
         animator.SetInteger("Running", 1);
         if (Input.GetKey("space"))
@@ -180,77 +191,134 @@ public class Character : MonoBehaviour {
         }
     }
 
-    private void JumpAnimation ()
+    public void JumpAnimation()
     {
         animator.SetInteger("Running", 0);
         animator.SetInteger("Jump_FromStandBy", 1);
     }
 
-    private void StandByAnimation ()
+    public void StandByAnimation()
     {
         animator.SetInteger("Running", 0);
         animator.SetInteger("Run_FromStandBy", 0);
         animator.SetInteger("Jump_FromStandBy", 0);
     }
 
-    private void AnimationControl ()
+    #endregion
+
+    public void AnimationControl()
     {
         if (Time.timeScale != 0)
         {
             if (Input.GetKey("right") || Input.GetKey("left"))
             {
-                RunningAnimation();
+                actionController.RunningAnimation();
             }
             else if (Input.GetKey("space"))
             {
-                JumpAnimation();
+                actionController.JumpAnimation();
             }
             else
             {
-                StandByAnimation();
+                actionController.StandByAnimation();
             }
         }
     }
 
-    private void MovementControl ()
+
+
+    #region IMovementController implementation
+
+    public void MoveRight(float horizontalAxis)
     {
-        if (!lastRight && Input.GetKey("right"))
+        if (characterController.isGrounded)
+        {
+            moveDirection = transform.forward * horizontalAxis * speed;
+        }
+        if (!lastRight)
         {
             transform.Rotate(new Vector3(0, 180, 0), Space.Self);
             lastRight = true;
         }
-        else if (lastRight && Input.GetKey("left"))
-        {
-            transform.Rotate(new Vector3(0, 180, 0), Space.Self);
-            lastRight = false; 
-        }
 
+    }
+
+    public void MoveLeft(float horizontalAxis)
+    {
         if (characterController.isGrounded)
         {
-            if (Input.GetKey("right"))
-            {
-                moveDirection = transform.forward * Input.GetAxis("Horizontal") * speed;
-            }
-            else if (Input.GetKey("left"))
-            {
-                moveDirection = (transform.forward * -1) * Input.GetAxis("Horizontal") * speed;
-            }
-            else
-            {
-                moveDirection = Vector3.zero;
-            }
-
-            if (Input.GetKey("space"))
-            {
-                moveDirection.y += speed * jumpMultiply;
-            }
+            moveDirection = -transform.forward * horizontalAxis * speed;
         }
+        if (lastRight)
+        {
+            transform.Rotate(new Vector3(0, 180, 0), Space.Self);
+            lastRight = false;
+        }
+
+    }
+
+    public void Jump()
+    {
+        if (characterController.isGrounded)
+        {
+            moveDirection.y += speed * jumpMultiply;
+        }
+    }
+
+    public void Move(float gravity)
+    {
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
-    private void Update () {
+    #endregion
+
+    public void MovementControl()
+    {
+        if (Input.GetKey("right"))
+        {
+            actionController.MoveRight(Input.GetAxis("Horizontal"));
+        }
+        else if (Input.GetKey("left"))
+        {
+            actionController.MoveLeft(Input.GetAxis("Horizontal"));
+        }
+        else
+        {
+            if (characterController.isGrounded)
+            {
+                moveDirection = Vector3.zero;
+            }
+        }
+        if (Input.GetKey("space"))
+        {
+            actionController.Jump();
+        }
+
+        actionController.Move();
+
+    }
+
+
+
+    private void Update()
+    {
         AnimationControl();
         MovementControl();
-	}
+    }
+}
+
+public interface IAnimationController
+{
+    void RunningAnimation();
+    void JumpAnimation();
+    void StandByAnimation();
+}
+
+public interface IMovementController
+{
+    void MoveRight(float horizontalAxis);
+    void MoveLeft(float horizontalAxis);
+    void Jump();
+    void Move(float gravity);
 }
